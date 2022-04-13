@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useState } from "react";
 //import { useUserContext } from "../components/login/user-context";
 import { fetchLogin } from "../components/login/fetchLogin";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   margin-top: 100px;
@@ -42,8 +42,8 @@ function LoginForm() {
   //로그인이 성공적으로 이루어지면 user에 상태값을 넣어줘야지 나중에 다른 컴포넌트에서도 user값을 이용하여 다른 것들을 할 수 있음
   //const { setUser } = useUserContext();
 
-  //url 이동을 위한 useHistory
-  const history = useHistory();
+  //url 이동을 위한 useRouter
+  const router = useRouter();
 
   //input에서 입력한 아이디와 비밀번호 정보를 담기위한 state
   const [account, setAccount] = useState({
@@ -71,7 +71,7 @@ function LoginForm() {
       //성공하면 해당 user 아이디 패스워드값 셋팅
       setUser(user);
       //성공하면 해당 url로 이동(main페이지로)
-      history.replace("/");
+      router.push("/");
     } catch (error) {
       //실패하면 throw new Error("") 값 출력
       window.alert(error);
