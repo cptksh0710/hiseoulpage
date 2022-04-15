@@ -33,19 +33,9 @@ const items = [
     title: "Board",
   },
   {
-    href: "/products",
-    icon: <ShoppingBagIcon fontSize="small" />,
-    title: "Products",
-  },
-  {
     href: "/account",
     icon: <UserIcon fontSize="small" />,
     title: "Account",
-  },
-  {
-    href: "/settings",
-    icon: <CogIcon fontSize="small" />,
-    title: "Settings",
   },
   {
     href: "/login",
@@ -58,19 +48,9 @@ const items = [
     title: "Register",
   },
   {
-    href: "/404",
-    icon: <XCircleIcon fontSize="small" />,
-    title: "Error",
-  },
-  {
     href: "/deepview",
     icon: <ShoppingBagIcon fontSize="small" />,
     title: "Deepview",
-  },
-  {
-    href: "/logintest",
-    icon: <ShoppingBagIcon fontSize="small" />,
-    title: "logintest",
   },
 ];
 
@@ -160,7 +140,6 @@ export const DashboardSidebar = (props) => {
             <NavItem key={item.title} icon={item.icon} href={item.href} title={item.title} />
           ))}
         </Box>
-        <Divider sx={{ borderColor: "#2D3748" }} />
       </Box>
     </>
   );

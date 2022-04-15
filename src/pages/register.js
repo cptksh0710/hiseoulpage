@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Head from 'next/head';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import * as Yup from 'yup';
+import Head from "next/head";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import axios from "axios";
+import * as Yup from "yup";
 import {
   Box,
   Button,
@@ -13,20 +13,31 @@ import {
   FormHelperText,
   Link,
   TextField,
-  Typography
-} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { SettingsSystemDaydreamTwoTone } from '@mui/icons-material';
+  Typography,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { SettingsSystemDaydreamTwoTone } from "@mui/icons-material";
 
 const Register = () => {
   const [data, setData] = useState(null);
 
   var temp = new Date();
-  var date = temp.getFullYear() + '-' + (temp.getMonth() + 1) + '-' + temp.getDate() + ' ' + temp.getHours() + ':' + temp.getMinutes() + ':' + temp.getSeconds();
+  var date =
+    temp.getFullYear() +
+    "-" +
+    (temp.getMonth() + 1) +
+    "-" +
+    temp.getDate() +
+    " " +
+    temp.getHours() +
+    ":" +
+    temp.getMinutes() +
+    ":" +
+    temp.getSeconds();
   const nDate = date;
 
   const addCustomer = () => {
-    const url = 'http://localhost:8080/restapi/member';
+    const url = "http://localhost:8080/restapi/member";
     const formData = new FormData();
     formData.append("no", 0);
     formData.append("id", formik.values.firstName);
@@ -44,101 +55,63 @@ const Register = () => {
         "content-type": "multipart/form-data",
       },
     };
-    return (axios.post(url, formData, config)
-      .then(response => {
-        console.log('response :', JSON.stringify(response, null, 2))
-      }).catch(error => {
-        console.log('failed', error)
-      }))
-  }
-
-
+    return axios
+      .post(url, formData, config)
+      .then((response) => {
+        console.log("response :", JSON.stringify(response, null, 2));
+      })
+      .catch((error) => {
+        console.log("failed", error);
+      });
+  };
 
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      password: '',
-      policy: false
+      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      policy: false,
     },
     validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email(
-          'Must be a valid email')
-        .max(255)
-        .required(
-          'Email is required'),
-      firstName: Yup
-        .string()
-        .max(255)
-        .required(
-          'First name is required'),
-      lastName: Yup
-        .string()
-        .max(255)
-        .required(
-          'Last name is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required(
-          'Password is required'),
-      policy: Yup
-        .boolean()
-        .oneOf(
-          [true],
-          'This field must be checked'
-        )
+      email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
+      firstName: Yup.string().max(255).required("First name is required"),
+      lastName: Yup.string().max(255).required("Last name is required"),
+      password: Yup.string().max(255).required("Password is required"),
+      policy: Yup.boolean().oneOf([true], "This field must be checked"),
     }),
     onSubmit: () => {
-      router.push('/login');
-    }
+      router.push("/login");
+    },
   });
 
   return (
     <>
       <Head>
-        <title>
-          회원가입 페이지
-        </title>
+        <title>회원가입</title>
       </Head>
       <Box
         component="main"
         sx={{
-          alignItems: 'center',
-          display: 'flex',
+          alignItems: "center",
+          display: "flex",
           flexGrow: 1,
-          minHeight: '100%'
+          minHeight: "100%",
         }}
       >
         <Container maxWidth="sm">
-          <NextLink
-            href="/"
-            passHref
-          >
-            <Button
-              component="a"
-              startIcon={<ArrowBackIcon fontSize="small" />}
-            >
+          <NextLink href="/" passHref>
+            <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
               메인 화면
             </Button>
           </NextLink>
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
-              <Typography
-                color="textPrimary"
-                variant="h4"
-              >
+              <Typography color="textPrimary" variant="h4">
                 회원가입
               </Typography>
-              <Typography
-                color="textSecondary"
-                gutterBottom
-                variant="body2"
-              >
+              <Typography color="textSecondary" gutterBottom variant="body2">
                 이메일로 계정 만들기
               </Typography>
             </Box>
@@ -194,9 +167,9 @@ const Register = () => {
             />
             <Box
               sx={{
-                alignItems: 'center',
-                display: 'flex',
-                ml: -1
+                alignItems: "center",
+                display: "flex",
+                ml: -1,
               }}
             >
               <Checkbox
@@ -204,33 +177,19 @@ const Register = () => {
                 name="policy"
                 onChange={formik.handleChange}
               />
-              <Typography
-                color="textSecondary"
-                variant="body2"
-              >
-                개인정보 이용 동의
-                {' '}
-                <NextLink
-                  href="#"
-                  passHref
-                >
-                  <Link
-                    color="primary"
-                    underline="always"
-                    variant="subtitle2"
-                  >
+              <Typography color="textSecondary" variant="body2">
+                개인정보 이용 동의{" "}
+                <NextLink href="#" passHref>
+                  <Link color="primary" underline="always" variant="subtitle2">
                     안내문서
                   </Link>
                 </NextLink>
               </Typography>
             </Box>
             {Boolean(formik.touched.policy && formik.errors.policy) && (
-              <FormHelperText error>
-                {formik.errors.policy}
-              </FormHelperText>
+              <FormHelperText error>{formik.errors.policy}</FormHelperText>
             )}
             <Box sx={{ py: 2 }}>
-
               <Button
                 color="primary"
                 disabled={formik.isSubmitting}
@@ -243,20 +202,10 @@ const Register = () => {
                 회원가입
               </Button>
             </Box>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              아이디가 이미 있으신가요?
-              {' '}
-              <NextLink
-                href="/login"
-                passHref
-              >
-                <Link
-                  variant="subtitle2"
-                  underline="hover"
-                >
+            <Typography color="textSecondary" variant="body2">
+              아이디가 이미 있으신가요?{" "}
+              <NextLink href="/login" passHref>
+                <Link variant="subtitle2" underline="hover">
                   로그인
                 </Link>
               </NextLink>
@@ -269,4 +218,3 @@ const Register = () => {
 };
 
 export default Register;
-

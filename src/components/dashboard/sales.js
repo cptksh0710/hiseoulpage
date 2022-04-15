@@ -1,4 +1,5 @@
 import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -7,30 +8,44 @@ export const Sales = (props) => {
   const theme = useTheme();
 
   const data = {
-    datasets: [
+    // datasets: [
+    //   {
+    //     backgroundColor: '#3F51B5',
+    //     barPercentage: 0.5,
+    //     barThickness: 12,
+    //     borderRadius: 4,
+    //     categoryPercentage: 0.5,
+    //     data: [18, 5, 19, 27, 29, 19, 20],
+    //     label: 'This year',
+    //     maxBarThickness: 10
+    //   },
+    //   {
+    //     backgroundColor: '#EEEEEE',
+    //     barPercentage: 0.5,
+    //     barThickness: 12,
+    //     borderRadius: 4,
+    //     categoryPercentage: 0.5,
+    //     data: [11, 20, 12, 29, 30, 25, 13],
+    //     label: 'Last year',
+    //     maxBarThickness: 10
+    //   }
+    // ],
+
+    datasets:[
       {
-        backgroundColor: '#3F51B5',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year',
-        maxBarThickness: 10
+          type:'line',
+          label:'Dataset 1',
+          borderColor: 'rgb(54, 162, 235)',
+          borderWidth: 2,
+          data: [1,2,3,4,5],
       },
-      {
-        backgroundColor: '#EEEEEE',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year',
-        maxBarThickness: 10
-      }
-    ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug', '7 aug']
-  };
+  ],
+
+  //   labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug', '7 aug']
+  // };
+
+  labels : ['A', 'B', 'C', 'D', 'E']
+};
 
   const options = {
     animation: false,

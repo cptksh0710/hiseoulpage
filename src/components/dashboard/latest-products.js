@@ -39,13 +39,14 @@ const products = [
     name: 'Lyft',
     imageUrl: '/static/images/products/product_4.png',
     updatedAt: subHours(Date.now(), 5)
-  },
-  {
-    id: uuid(),
-    name: 'GitHub',
-    imageUrl: '/static/images/products/product_5.png',
-    updatedAt: subHours(Date.now(), 9)
-  }
+   }
+  //,
+  // {
+  //   id: uuid(),
+  //   name: 'GitHub',
+  //   imageUrl: '/static/images/products/product_5.png',
+  //   updatedAt: subHours(Date.now(), 9)
+  // }
 ];
 
 export const LatestProducts = (props) => (

@@ -9,49 +9,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function Login() {
-  const [account, setAccount] = useState({
-    userId: "",
-    password: "",
-  });
-
-  //input에 입력하면 자동적으로 account state값 변경
-  const onChangeAccount = (e) => {
-    //...을 이용하여 account의 복사본을 만들고
-    //input에 지정한 네임 속성에 해당 value 값을 넣어 오버라이딩!
-    //console.log(account)를 찍어보고 입력한 값들이 account에 출력되면 성공!!
-    console.log(account);
-    setAccount({
-      ...account,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  //동기식으로 로그인정보를 통신하여 출력
-  const onSubmitAccount = async () => {
-    try {
-      const account = await fetchLogin(user);
-
-      //성공하면 해당 user 아이디 패스워드값 셋팅
-      setUser(user);
-      //성공하면 해당 url로 이동(main페이지로)
-      history.replace("/");
-    } catch (error) {
-      //실패하면 throw new Error("") 값 출력
-      window.alert(error);
-    }
-  };
-
   const router = useRouter();
   const logo = {
     mainlogo: "/static/images/avatars/login_logo.png",
   };
   const formik = useFormik({
     initialValues: {
-      userId: "",
+      userid: "",
       password: "",
     },
     validationSchema: Yup.object({
-      userId: Yup.string().max(255).required("ID를 입력하세요"),
+      userid: Yup.string().max(255).required("ID를 입력하세요"),
       password: Yup.string().max(255).required("비밀번호를 입력하세요"),
     }),
     onSubmit: () => {
@@ -100,16 +68,16 @@ function Login() {
             </Box>
 
             <TextField
-              error={Boolean(formik.touched.userId && formik.errors.userId)}
+              error={Boolean(formik.touched.userid && formik.errors.userid)}
               fullWidth
-              helperText={formik.touched.userId && formik.errors.userId}
+              helperText={formik.touched.userid && formik.errors.userid}
               label="User ID"
               margin="normal"
-              name="userId"
+              name="userid"
               onBlur={formik.handleBlur}
-              onChange={onChangeAccount}
-              type="userId"
-              value={userId}
+              onChange={formik.handleChange}
+              type="userid"
+              value={formik.values.userid}
               variant="outlined"
             />
             <TextField
@@ -120,9 +88,9 @@ function Login() {
               margin="normal"
               name="password"
               onBlur={formik.handleBlur}
-              onChange={handleInputPass}
+              onChange={formik.handleChange}
               type="password"
-              value={inputPass}
+              value={formik.values.password}
               variant="outlined"
             />
 

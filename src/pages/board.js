@@ -1,22 +1,20 @@
-import Head from 'next/head';
-import { Box, Container } from '@mui/material';
-import { BoardListResults } from '../components/board/board-list-results';
-import { BoardListToolbar } from '../components/board/board-list-toolbar';
-import { DashboardLayout } from '../components/dashboard-layout';
-import { boards } from '../__mocks__/boards';
+import Head from "next/head";
+import { Box, Container } from "@mui/material";
+import { BoardListResults } from "../components/board/board-list-results";
+import { BoardListToolbar } from "../components/board/board-list-toolbar";
+import { DashboardLayout } from "../components/dashboard-layout";
+import { boards } from "../__mocks__/boards";
 
 const Board = () => (
   <>
     <Head>
-      <title>
-        Board | chester lee (Material Kit)
-      </title>
+      <title>Board | HISEOUL ML CONSOLE</title>
     </Head>
     <Box
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8
+        py: 8,
       }}
     >
       <Container maxWidth={false}>
@@ -28,10 +26,6 @@ const Board = () => (
     </Box>
   </>
 );
-Board.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Board.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Board;

@@ -6,14 +6,23 @@ import {
   Divider,
   Typography
 } from '@mui/material';
-import Username from './username';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const user = {
-  avatar: '/static/images/avatars/ico_01.png',
-  name: 'kicheol kim',
-};
+export const AccountProfile = (props) => {
+  const avatar = '/static/images/avatars/ico_01.png';
 
-export const AccountProfile = (props) => (
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const apiCall = async () => {
+      const response = await axios.get('http://localhost:8080/restapi/member/1');
+      setData(response.data.payload);
+    };
+    apiCall();
+  }, [])
+
+
+  return (
   <Card {...props}>
     <CardContent>
       <Box
@@ -24,7 +33,7 @@ export const AccountProfile = (props) => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={avatar}
           sx={{
             height: 200,
             mb: 2,
@@ -36,10 +45,10 @@ export const AccountProfile = (props) => (
           gutterBottom
           variant="h5"
         >
-          <Username />
+          {data.name}
         </Typography>
       </Box>
     </CardContent>
     <Divider />
   </Card>
-);
+)}
